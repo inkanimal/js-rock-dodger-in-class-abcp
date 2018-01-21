@@ -97,7 +97,16 @@ function moveDodgerLeft() {
  }
 
 function moveDodgerRight() {
-
+  function move(e){
+    var right = 0
+    function step(){
+      e.style.right = `${right += 4}px`
+    if (right < 200){
+      window.requestAnimationFrame(step)
+    }
+    }
+    window.requestAnimationFrame(step)
+  }
 
 function positionToInteger(p) {
   return parseInt(p.split('px')[0]) || 0

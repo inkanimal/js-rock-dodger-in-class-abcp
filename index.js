@@ -75,39 +75,29 @@ function endGame() {
 }
 
 function moveDodger(e) {
-  const code = e.which
-
-  if ([LEFT_ARROW, RIGHT_ARROW].indexOf(code) > -1) {
-    e.preventDefault()
-    e.stopPropagation()
-  }
-
-  if (code === LEFT_ARROW) {
-    moveDodgerLeft()
-  } else if (code === RIGHT_ARROW) {
-    moveDodgerRight()
-  }
-}
+  e.preventDefault();
+  e.stopPropagation();// if e is left
+  // call the moveDodgerLeft()
+  if(e.which == 37){
+    moveDodgerLeft();
+  } else if(e.which == 39){
+    moveDodgerRight();
+  }  //left 37, right 39
 
 function moveDodgerLeft() {
-  window.requestAnimationFrame(function() {
-    const left = positionToInteger(DODGER.style.left)
-
-    if (left > 0) {
-      DODGER.style.left = `${left - 4}px`;
-    }
-  })
-}
+ function move(e){
+   var left = 0
+   function step(){
+     e.style.top = `${left += 4}px`
+   if (left < 200){
+     window.requestAnimationFrame(step)
+   }
+   }
+   window.requestAnimationFrame(step)
+ }
 
 function moveDodgerRight() {
-  window.requestAnimationFrame(function() {
-    const left = positionToInteger(DODGER.style.left)
 
-    if (left < 360) {
-      DODGER.style.left = `${left + 4}px`;
-    }
-  })
-}
 
 function positionToInteger(p) {
   return parseInt(p.split('px')[0]) || 0

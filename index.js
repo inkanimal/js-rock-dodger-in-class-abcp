@@ -85,28 +85,24 @@ function moveDodger(e) {
   }  //left 37, right 39
 
 function moveDodgerLeft() {
- function move(e){
-   var left = 0
-   function step(){
-     e.style.left = `${left -= 4}px`
-   if (left < 200){
-     window.requestAnimationFrame(step)
-   }
-   }
-   window.requestAnimationFrame(step)
- }
+ var myPostionInPixels = $(`#dodger`).style.left
+ var myPostionInNum = positionToInteger(myPostionInPixels);
+ var newPostion = myPostionInNum - 4;
+ document.getElementById("dodger").style.left = newPostion
+  
+  }
 
 function moveDodgerRight() {
-  function move(e){
-    var right = 0
-    function step(){
-      e.style.right = `${right += 4}px`
-    if (right < 200){
-      window.requestAnimationFrame(step)
-    }
-    }
-    window.requestAnimationFrame(step)
-  }
+  // //function move(e){
+  //   var right = 0
+  //   function step(){
+  //     e.style.right = `${right += 4}px`
+  //   if (right < 200){
+  //     window.requestAnimationFrame(step)
+  //   }
+  //   }
+  //   window.requestAnimationFrame(step)
+  // }
 
 function positionToInteger(p) {
   return parseInt(p.split('px')[0]) || 0
